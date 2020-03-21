@@ -226,7 +226,7 @@ int main()
 			break;
 
 			case 3:
-				printf("case 3 \n");
+				delete_();
 			break;
 
 			case 4:
@@ -234,10 +234,8 @@ int main()
 			break;
 
 			case 5:
-				printf("case 5 \n");
-
+				printf("\nSzia!!\n"); 
 				exit(0);
-			break;
 
 			default:
 				printf("Wrong data information \n");
