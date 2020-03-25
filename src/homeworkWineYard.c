@@ -5,6 +5,7 @@
 #include <fcntl.h> //open,creat
 #include <errno.h> //perror, errno
 #include <sys/types.h> //open
+#include <ctype.h>
 
 /*
 Spring is coming in vineyard called "Fine Wine Good Health". 
@@ -38,8 +39,8 @@ Deadline 29th March 2020
 //This is our structure : -> The important data for each registration 
 struct CostumerData
 {
-	char 	names[50]; 
-	char 	address[50];
+    char    names[50]; 
+    char    address[50];
     char    weekDays[50];
 };
 
@@ -54,24 +55,22 @@ void add_()
 
 struct CostumerData tmp;
 
-	if(order < 100)
-	{
-		printf("\nName: ");
-		scanf("%s",tmp.names);
-		printf("\nAdress: ");
-		scanf("%s", tmp.address);
-		printf("\nWeek Days:");
+    if(order < 100)
+    {
+        printf("\nName: ");
+        scanf("%s",tmp.names);
+        printf("\nAdress: ");
+        scanf("%s",tmp.address);
+        printf("\nWeek Days: ");
         scanf("%s", tmp.weekDays);
+    }
+    data[order] = tmp;
+    order +=1;
+    printf("\nAdd new data\n");
 
 
-	}
-	data[order] = tmp;
-	order +=1;
-	printf("\nAdd new data\n");
-
-
-	//The main  goal here is to  read from file and each data to specific place. This is the thing that is missing here for 
-	//a while...
+    //The main  goal here is to  read from file and each data to specific place. This is the thing that is missing here for 
+    //a while...
 
 
 }
@@ -125,8 +124,8 @@ int choice;
        }
 
 
-	printf("\n edit the order\n");
-		printf("Modify working");
+    printf("\n edit the order\n");
+        printf("Modify working");
 
 }
 
@@ -180,21 +179,23 @@ void  delete_()
         printf("No item found\n");
     }
 
-		printf("Delete working");
+        printf("Delete working");
 }
 
 
 //Printing all data 
 void printall()
 {
-    int n;
-    printf("\nData:\n");
-    for(n = 0; n < order; n++)
+    printf("\nAll the registered Data:\n");
+    for(int i = 0; i  < order; i++)
     {
-        printf("\n%d.\n", n+1);
-        printf("%s\n",data[n].names);
-        printf("%s\n",data[n].address);
-        printf("%s\n",data[n].weekDays);
+        printf("\n%d.\n", i+1);
+        printf("Name : ");
+        printf("%s\n",data[i].names);
+        printf("Address : ");
+        printf("%s\n",data[i].address);
+        printf("weekdays : ");
+        printf("%s\n",data[i].weekDays);
     }
 }
 
@@ -202,52 +203,100 @@ void printall()
 //This is the main function -> All the functions above will be called here
 int main()
 {
-	int choice;
+    int choice;
+    struct dayLimit {
+    char name[10];
+    int count;
+  };
 
-	do{
-		printf("\nFine Wine Good Health:\n");
-		printf("\nInput the number of registration \n");
-		printf("\n1. Add new registration\n");
-    	printf("\n2. Modify registration\n");
-    	printf("\n3. Delete registration\n");
-    	printf("\n4. List all the data\n");
-    	printf("\n5. Exit\n");
-    	printf("////////////////////////\n");
-    	scanf("%d", &choice);
+// Get the days in a string using gets
+// split the string using split() into a temporary array
+// call a forloop on daysCounter and check name and if it matches then increase its count
+// check using forloop whether all daysCounter[count] < daysLimit[count] if it is true then register else break/return
+  
+  
+  /*struct dayLimit daysCounter[7];
+  daysCounter[0].name = "Monday";
+  daysCounter[1].name = "Tuesday";
+  daysCounter[2].name = "Wednesday";
+  daysCounter[3].name = "Thursday";
+  daysCounter[4].name = "Friday";
+  
+  daysCounter[0].count = 0;
+  daysCounter[1].count = 0;
+  daysCounter[2].count = 0;
+  daysCounter[3].count = 0;
+  daysCounter[4].count = 0;
+  
+  
+  struct dayLimit daysLimit[7];
+  
+  daysLimit[0].name = "Monday";
+  daysLimit[1].name = "Tuesday";
+  daysLimit[2].name = "Wednesday";
+  daysLimit[3].name = "Thursday";
+  daysLimit[4].name = "Friday";
+  
+  daysLimit[0].count = 7;
+  daysLimit[1].count = 7;
+  daysLimit[2].count = 7;
+  daysLimit[3].count = 7;
+  daysLimit[4].count = 7;*/
+  
 
-		switch(choice)
-		{
-			case 1: 
-				add_(); //This place must be replaced by the  functions above.
-			break; 
+  
+  
 
-			case 2:
-				modify_();
-			break;
-
-			case 3:
-				delete_();
-			break;
-
-			case 4:
-				printall();
-			break;
-
-			case 5:
-				printf("\nSzia!!\n"); 
-				exit(0);
-
-			default:
-				printf("Wrong data information \n");
-			break;
-		}
+    do{
+        printf("\n---------Fine Wine Good Health---------\n");
+        printf("\nInput the number of registration. \n");
+        printf("\n1. Add new registration.\n");
+        printf("\n2. Modify registration.\n");
+        printf("\n3. Delete registration.\n");
+        printf("\n4. List all the data.\n");
+        printf("\n5. Exit.\n");
+        printf("------------------------------------------\n");
+        scanf("%i", &choice);
 
 
+   
+        
+    
+        switch(choice)
+        {
+            case 1: 
+                add_(); //This place must be replaced by the  functions above.
+            break; 
 
-	}while(choice!=6);
+            case 2:
+                modify_();
+            break;
+
+            case 3:
+                delete_();
+            break;
+
+            case 4:
+                printall();
+            break;
+
+            case 5:
+                printf("\nSzia!!\n"); 
+                exit(0);
+
+            default:
+                printf("Wrong data information\n");
+            break;
+        
+        } 
 
 
 
 
-	return 0;
+    }while(choice!=6);
+
+
+
+
+    return 0;
 }
