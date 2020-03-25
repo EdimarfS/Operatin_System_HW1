@@ -62,7 +62,14 @@ struct CostumerData tmp;
         printf("\nAdress: ");
         scanf("%s",tmp.address);
         printf("\nWeek Days: ");
-        scanf("%s", tmp.weekDays);
+        //reading from the multiple lines
+        char *alline = fgets(tmp.weekDays,50,stdin);
+        scanf("%[^'\n']s",alline);
+        
+  
+
+
+
     }
     data[order] = tmp;
     order +=1;
@@ -215,7 +222,9 @@ int main()
 // check using forloop whether all daysCounter[count] < daysLimit[count] if it is true then register else break/return
   
   
-  /*struct dayLimit daysCounter[7];
+  struct dayLimit daysCounter[7];
+
+
   daysCounter[0].name = "Monday";
   daysCounter[1].name = "Tuesday";
   daysCounter[2].name = "Wednesday";
@@ -229,7 +238,7 @@ int main()
   daysCounter[4].count = 0;
   
   
-  struct dayLimit daysLimit[7];
+ struct dayLimit daysLimit[7];
   
   daysLimit[0].name = "Monday";
   daysLimit[1].name = "Tuesday";
@@ -241,7 +250,7 @@ int main()
   daysLimit[1].count = 7;
   daysLimit[2].count = 7;
   daysLimit[3].count = 7;
-  daysLimit[4].count = 7;*/
+  daysLimit[4].count = 7;
   
 
   
